@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { collection, addDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
-const NoteForm = () => {
+const NoteForm = ({ editingNote, setEditingNote, setActiveView }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [buttonState, setButtonState] = useState('idle');
+
+  useEffect(() => {
+    if (editingNote) {
+      setTitle(editingNote.title);
+      setContent(editingNote.content);
+    }
+  }, [editingNote]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,17 +21,28 @@ const NoteForm = () => {
     setButtonState('saving');
 
     try {
-      await addDoc(collection(db, 'notes'), {
-        title: title.trim(),
-        content: content.trim(),
-        timestamp: serverTimestamp(),
-      });
+      if (editingNote) {
+        await updateDoc(doc(db, 'notes', editingNote.id), {
+          title: title.trim(),
+          content: content.trim(),
+          timestamp: serverTimestamp(),
+        });
+        setEditingNote(null);
+      } else {
+        await addDoc(collection(db, 'notes'), {
+          title: title.trim(),
+          content: content.trim(),
+          timestamp: serverTimestamp(),
+        });
+      }
 
       setButtonState('success');
       setTitle('');
       setContent('');
-
-      setTimeout(() => setButtonState('idle'), 1200);
+      setTimeout(() => {
+        setButtonState('idle');
+        if (editingNote) setActiveView('library');
+      }, 1200);
     } catch (error) {
       console.error('Error saving note:', error);
       setButtonState('error');
@@ -41,7 +59,7 @@ const NoteForm = () => {
       case 'error':
         return '⚠ Error — Try Again';
       default:
-        return 'Save to Vault';
+        return editingNote ? 'Update Note' : 'Save to Vault';
     }
   };
 
