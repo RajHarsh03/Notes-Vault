@@ -1,101 +1,146 @@
-# NotesVault - React Edition
+# NotesVault 🔐
 
-A modern, visually stunning note-taking application built with React, featuring the "Aurora" design theme with warm amber, cool teal, and violet accents.
+> Your personal vault for code snippets & notes — fast, beautiful, real-time.
 
-## Features
+![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)
+![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange?style=flat-square&logo=firebase)
 
-- 📝 Create, edit, and delete notes
-- 🎨 Beautiful glass-morphism UI with gradient accents
-- 🔄 Real-time synchronization with Firebase
-- 📱 Fully responsive design
-- ⚡ Fast and smooth animations
-- 🌙 Dark theme optimized for readability
+---
 
-## Tech Stack
+## ✨ Features
 
-- **React 19** - UI framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first styling
-- **Firebase Firestore** - Real-time database
-- **Custom CSS** - Advanced animations and effects
+| Feature | Description |
+|---|---|
+| 📝 **Create & Edit** | Write notes with title, content, tags, and accent color |
+| 🏷️ **Tags** | Add tags to organize notes, filter by tag in library |
+| 🎨 **Color Accents** | 6 accent colors per note — amber, violet, teal, rose, blue, green |
+| 📊 **Live Stats** | Real-time character and line count while typing |
+| 🔍 **Search** | Instant search across title, content, and tags |
+| 👁️ **Note Viewer** | macOS-style modal to view full note content |
+| 📋 **Copy** | One-click copy note content to clipboard |
+| 🔔 **Toasts** | Success, error, and info notifications |
+| ⌨️ **Shortcuts** | `Ctrl + Enter` to save note |
+| 🔄 **Real-time Sync** | Firebase Firestore — changes sync instantly |
+| 📱 **Responsive** | Works on mobile, tablet, and desktop |
 
-## Getting Started
+---
+
+## 🖥️ Tech Stack
+
+- **React 19** — UI framework
+- **Vite 8** — Build tool with HMR
+- **Tailwind CSS v4** — Utility-first styling
+- **Firebase Firestore** — Real-time NoSQL database
+- **JetBrains Mono + Outfit** — Typography
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
+- Node.js v18+
+- npm
 
-- Node.js (v16 or higher)
-- npm or yarn
+### Setup
 
-### Installation
-
-1. Clone the repository:
 ```bash
+# 1. Clone the repo
 git clone <your-repo-url>
 cd Notes-Vault
-```
 
-2. Install dependencies:
-```bash
+# 2. Install dependencies
 npm install
-```
 
-3. Start the development server:
-```bash
+# 3. Start dev server
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+Open `http://localhost:5173` in your browser.
 
-## Available Scripts
+### Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+```bash
+npm run dev      # Development server with HMR
+npm run build    # Production build
+npm run preview  # Preview production build locally
+```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 Notes-Vault/
 ├── src/
 │   ├── components/
-│   │   ├── Navigation.jsx      # Top navigation bar
-│   │   ├── NoteForm.jsx        # Note creation/editing form
-│   │   ├── NoteCard.jsx        # Individual note card
-│   │   ├── NotesList.jsx       # Notes grid view
-│   │   └── NoteModal.jsx       # Full note viewer modal
+│   │   ├── NoteForm.jsx      # Create / edit note form
+│   │   ├── NotesList.jsx     # Library grid with search & filters
+│   │   ├── NoteCard.jsx      # Individual note card
+│   │   ├── NoteModal.jsx     # Full note viewer (macOS modal)
+│   │   └── Toast.jsx         # Notification toasts
+│   ├── hooks/
+│   │   └── useToast.js       # Toast state management hook
 │   ├── config/
-│   │   └── firebase.js         # Firebase configuration
-│   ├── App.jsx                 # Main app component
-│   ├── main.jsx                # App entry point
-│   └── index.css               # Global styles
-├── index.html                   # HTML template
-├── vite.config.js              # Vite configuration
-├── tailwind.config.js          # Tailwind configuration
-└── package.json                # Dependencies
-
+│   │   └── firebase.js       # Firebase initialization
+│   ├── App.jsx               # Root layout & state
+│   ├── main.jsx              # React entry point
+│   └── index.css             # Aurora theme & animations
+├── index.html
+├── vite.config.js
+├── tailwind.config.js
+└── package.json
 ```
 
-## Firebase Setup
+---
 
-The app uses Firebase Firestore for data storage. The Firebase configuration is included, but for production use, you should:
+## 🔥 Firebase Setup
 
-1. Create your own Firebase project at [Firebase Console](https://console.firebase.google.com/)
-2. Enable Firestore Database
-3. Update the config in `src/config/firebase.js`
+The app uses Firestore to store notes. To use your own Firebase project:
 
-## Design Features
+1. Go to [Firebase Console](https://console.firebase.google.com/) and create a project
+2. Enable **Firestore Database** in test mode
+3. Replace the config in `src/config/firebase.js`:
 
-- **Glass-morphism effects** with backdrop blur
-- **Staggered card animations** for smooth loading
-- **Gradient text effects** with animated hue rotation
-- **Custom button states** (loading, success, error)
-- **macOS-style modal** window with colored dots
-- **Ambient background orbs** for visual depth
+```js
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+```
 
-## License
+> ⚠️ For production, move this config to environment variables (`.env` file).
 
-ISC
+---
 
-## Credits
+## 🎨 Design
 
-NotesVault Cosmic Edition © 2026
+**Aurora Theme** — dark navy base with warm amber, cool teal, and violet accents.
+
+- Glass-morphism panels with `backdrop-filter: blur`
+- Ambient background orbs for depth
+- Staggered card entrance animations
+- Sliding nav underline indicator
+- Animated gradient logo text
+- macOS-style note viewer modal
+- Custom scrollbars
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl + Enter` | Save note |
+| `Escape` | Close note modal |
+
+---
+
+## 📄 License
+
+ISC — NotesVault Cosmic Edition © 2026
