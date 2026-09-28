@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-const NoteModal = ({ note, onClose }) => {
+const NoteModal = ({ note, onClose, addToast }) => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const NoteModal = ({ note, onClose }) => {
   const handleCopy = async () => {
     await navigator.clipboard.writeText(note.content);
     setCopied(true);
+    addToast('Copied to clipboard!', 'success', 2000);
     setTimeout(() => setCopied(false), 2000);
   };
 

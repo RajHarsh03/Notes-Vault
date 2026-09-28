@@ -432,3 +432,232 @@
     0%   { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
+
+  /* ---- Form Labels ---- */
+  .form-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+  }
+
+  /* ---- Tag Input ---- */
+  .tag-input-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    min-height: 48px;
+    transition: border-color 0.3s ease;
+    cursor: text;
+  }
+
+  .tag-input-box:focus-within {
+    border-color: var(--accent-1);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.10);
+  }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: rgba(245,158,11,0.12);
+    color: #f59e0b;
+    border: 1px solid rgba(245,158,11,0.25);
+  }
+
+  .tag-remove {
+    font-size: 0.6rem;
+    opacity: 0.6;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 2px;
+    transition: opacity 0.2s;
+  }
+
+  .tag-remove:hover { opacity: 1; }
+
+  .tag-input-field {
+    flex: 1;
+    min-width: 120px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+  }
+
+  .tag-input-field::placeholder { color: var(--text-muted); }
+
+  /* ---- Color Dot Picker ---- */
+  .color-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .color-dot:hover { transform: scale(1.2); }
+
+  /* ---- Note Tag (on card) ---- */
+  .note-tag {
+    font-size: 0.68rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 1px 7px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-weight: 500;
+  }
+
+  /* ---- Search Bar ---- */
+  .search-input {
+    width: 100%;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    padding: 10px 40px 10px 40px;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .search-input:focus {
+    border-color: var(--accent-1);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.08);
+    background: rgba(0,0,0,0.35);
+  }
+
+  .search-input::placeholder { color: var(--text-muted); }
+
+  .search-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .search-clear {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+
+  .search-clear:hover { color: white; }
+
+  /* ---- Tag Filter Pills ---- */
+  .filter-tag {
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 3px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-tag:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
+  }
+
+  .filter-tag-active {
+    background: rgba(245,158,11,0.15);
+    border-color: rgba(245,158,11,0.35);
+    color: #f59e0b;
+  }
+
+  /* ---- Toast ---- */
+  .toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+  }
+
+  .toast-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    pointer-events: auto;
+    animation: toastIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    min-width: 200px;
+    max-width: 320px;
+  }
+
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .toast-success {
+    background: rgba(16,185,129,0.15);
+    border-color: rgba(16,185,129,0.30);
+    color: #6ee7b7;
+  }
+
+  .toast-error {
+    background: rgba(239,68,68,0.15);
+    border-color: rgba(239,68,68,0.30);
+    color: #fca5a5;
+  }
+
+  .toast-info {
+    background: rgba(59,130,246,0.15);
+    border-color: rgba(59,130,246,0.30);
+    color: #93c5fd;
+  }
+
+  .toast-icon { flex-shrink: 0; }
+
+  .toast-msg { flex: 1; }
+
+  .toast-close {
+    font-size: 0.65rem;
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: opacity 0.2s;
+  }
+
+  .toast-close:hover { opacity: 1; }

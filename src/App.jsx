@@ -3,8 +3,11 @@ import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase
 import { db } from './config/firebase';
 import NoteForm from './components/NoteForm';
 import NotesList from './components/NotesList';
+import Toast from './components/Toast';
+import { useToast } from './hooks/useToast';
 
 function App() {
+  const { toasts, addToast, removeToast } = useToast();
   const [activeView, setActiveView] = useState('upload');
   const [editingNote, setEditingNote] = useState(null);
   const [notes, setNotes] = useState([]);
@@ -69,14 +72,16 @@ function App() {
         </div>
       </nav>
 
-      <main className="max-w-5xl mx-auto w-full p-4 sm:p-8">
-        {activeView === 'upload' && <NoteForm editingNote={editingNote} setEditingNote={setEditingNote} setActiveView={setActiveView} />}
-        {activeView === 'library' && <NotesList notes={notes} loading={notesLoading} onEdit={handleEdit} />}
+      <main className="flex-grow max-w-5xl mx-auto w-full p-4 sm:p-8">
+        {activeView === 'upload' && <NoteForm editingNote={editingNote} setEditingNote={setEditingNote} setActiveView={setActiveView} addToast={addToast} />}
+        {activeView === 'library' && <NotesList notes={notes} loading={notesLoading} onEdit={handleEdit} addToast={addToast} />}
       </main>
 
-      <footer className="text-center py-4 sm:py-8 text-gray-500 text-xs sm:text-sm">
+      <footer className="text-center py-8 text-gray-400 text-sm">
         NotesVault Cosmic Edition &copy; 2026
       </footer>
+
+      <Toast toasts={toasts} removeToast={removeToast} />
 
     </div>
   );
